@@ -1,7 +1,7 @@
 #include<iostream>
-#define MAX_HASH 7
+#define MAX_HASH 10
 #define HASH_KEY(key) key%MAX_HASH
-#include<cstring>
+
 using namespace std;
 
 typedef struct Node
