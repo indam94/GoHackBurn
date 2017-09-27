@@ -7,7 +7,7 @@ using UnityEngine;
 public class Anim
 {
     public AnimationClip idle;
-    public AnimationClip runFoward;
+    public AnimationClip runForward;
     public AnimationClip runBackward;
     public AnimationClip runRight;
     public AnimationClip runLeft;
@@ -17,12 +17,21 @@ public class PlayerCtrl : MonoBehaviour {
     private float v = 0.0f;
 
     private Transform tr;
+
     public float moveSpeed = 10.0f;
     public float rotSpeed = 100.0f;
 
+    public Anim anim; //인스펙터뷰에 표시한 애니메이션 클래스 변수
+    public Animation _animation;
+
     // Use this for initialization
     void Start () {
-        tr = GetComponent<Transform>();	
+        tr = GetComponent<Transform>();
+
+        _animation = GetComponentInChildren<Animation>();
+
+        _animation.clip = anim.idle;
+        _animation.Play();	
 	}
 	
 	// Update is called once per frame
@@ -39,5 +48,32 @@ public class PlayerCtrl : MonoBehaviour {
         tr.Translate(moveDir * moveSpeed * Time.deltaTime, Space.Self);
 
         tr.Rotate(Vector3.up * Time.deltaTime * rotSpeed * Input.GetAxis("Mouse X"));
+
+        //애니메이션의 자연스러운 변경을 위한 애니메이션 블렌딩
+        if (v >= 0.1f)
+        {
+            //
+            _animation.CrossFade(anim.runForward.name, 0.3f);
+        }
+        else if (v <= -0.1f)
+        {
+            //
+            _animation.CrossFade(anim.runBackward.name, 0.3f);
+        }
+        else if (h >= 0.1f)
+        {
+            //
+            _animation.CrossFade(anim.runRight.name, 0.3f);
+        }
+        else if (h <= -0.1f)
+        {
+            //
+            _animation.CrossFade(anim.runLeft.name, 0.3f);
+        }
+        else
+        {
+            //
+            _animation.CrossFade(anim.idle.name, 0.3f);
+        }
     }
 }
