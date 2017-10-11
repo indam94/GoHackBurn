@@ -24,6 +24,8 @@ public class PlayerCtrl : MonoBehaviour {
     public Anim anim; //인스펙터뷰에 표시한 애니메이션 클래스 변수
     public Animation _animation;
 
+	public int hp = 100;
+
     // Use this for initialization
     void Start () {
         tr = GetComponent<Transform>();
@@ -40,8 +42,8 @@ public class PlayerCtrl : MonoBehaviour {
         v = Input.GetAxis ("Vertical"); // InputManager의 "Vertical"에 설정된 값을 입력했을때 -1 ~ +1 까지의 값을 반환
         
         // 디버깅 정보를 텍스트 형태로 console 뷰에 표시
-        Debug.Log("H=" + h.ToString());
-        Debug.Log("V=" + v.ToString());
+        //Debug.Log("H=" + h.ToString());
+        //Debug.Log("V=" + v.ToString());
 
         Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
 
@@ -76,4 +78,34 @@ public class PlayerCtrl : MonoBehaviour {
             _animation.CrossFade(anim.idle.name, 0.3f);
         }
     }
+
+	void OnTriggerEnter(Collider coll){
+		if (coll.gameObject.tag == "PUNCH") {
+			hp -= 10;
+
+			//imgHpbar.fillAmount = (float)hp / (float)initHp;
+
+			Debug.Log ("Player HP = " + hp.ToString ());
+
+			if (hp <= 0) {
+				PlayerDie ();
+			}
+		}
+	}
+
+	void PlayerDie()
+	{
+		Debug.Log ("Player Die!!");
+
+		//		//Tag를 찾음
+		//		GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
+		//
+		//		foreach (GameObject monster in monsters) {
+		//			monster.SendMessage ("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
+		//		}
+		//OnPlayerDie();
+
+		//gameMgr.isGameOver = true;
+		//GameMgr.instance.isGameOver = true;
+	}
 }
