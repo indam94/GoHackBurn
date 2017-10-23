@@ -102,6 +102,13 @@ public class MonsterCtrl : MonoBehaviour {
 		}
 	}
 
+	void OnPlayerDie(){
+		Debug.Log ("Wow!");
+		StopAllCoroutines ();
+		nvAgent.Stop ();
+		animator.SetTrigger ("IsPlayerDie");
+	}
+
 	// Update is called once per frame
 	void Update () {
 		
