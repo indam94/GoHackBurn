@@ -16,6 +16,8 @@ public class MonsterCtrl : MonoBehaviour {
 	public float traceDist = 10.0f;
 	public float attackDist = 2.0f;
 
+	private int hp = 100;
+
 	private bool isDie = false;
 	// Use this for initialization
 	void Start () {
@@ -29,6 +31,14 @@ public class MonsterCtrl : MonoBehaviour {
 
 		StartCoroutine (this.CheckMonsterState ());
 		StartCoroutine (this.MonsterAction ());
+	}
+
+	void OnEnable(){
+		PlayerCtrl.OnPlayerDie += this.OnPlayerDie;
+	}
+
+	void OnDisable(){
+		PlayerCtrl.OnPlayerDie -= this.OnPlayerDie;
 	}
 
 	IEnumerator CheckMonsterState(){
@@ -90,15 +100,30 @@ public class MonsterCtrl : MonoBehaviour {
 
 
 			//hp차감
-			//hp -= coll.gameObject.GetComponent<BulletCtrl>().damage;
-			//if (hp <= 0) {
-			//	MonsterDie ();
-			//}
+			hp -= coll.gameObject.GetComponent<BallCtrl>().damage;
+			if (hp <= 0) {
+				MonsterDie ();
+			}
 
 			//삭제
 			Destroy(coll.gameObject);
 			//
 			animator.SetTrigger("IsHit");
+		}
+	}
+
+	void MonsterDie(){
+		StopAllCoroutines();
+
+		isDie = true;
+		monsterState = MonsterState.die;
+		nvAgent.Stop();
+		animator.SetTrigger("IsDie");
+
+		gameObject.GetComponentInChildren<CapsuleCollider> ().enabled = false;
+
+		foreach (Collider coll in gameObject.GetComponentsInChildren<SphereCollider>()) {
+			coll.enabled = false;
 		}
 	}
 

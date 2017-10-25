@@ -26,6 +26,9 @@ public class PlayerCtrl : MonoBehaviour {
 
 	public int hp = 100;
 
+	public delegate void PlayerDieHandler ();
+	public static event PlayerDieHandler OnPlayerDie;
+
     // Use this for initialization
     void Start () {
         tr = GetComponent<Transform>();
@@ -97,13 +100,13 @@ public class PlayerCtrl : MonoBehaviour {
 	{
 		Debug.Log ("Player Die!!");
 
-		//		//Tag를 찾음
-		//		GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
+		//Tag를 찾음
+		//GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
 		//
-		//		foreach (GameObject monster in monsters) {
-		//			monster.SendMessage ("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
-		//		}
-		//OnPlayerDie();
+		//foreach (GameObject monster in monsters) {
+		//	monster.SendMessage ("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
+		//}
+		OnPlayerDie();
 
 		//gameMgr.isGameOver = true;
 		//GameMgr.instance.isGameOver = true;
