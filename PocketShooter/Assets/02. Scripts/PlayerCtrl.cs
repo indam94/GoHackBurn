@@ -36,7 +36,7 @@ public class PlayerCtrl : MonoBehaviour {
         _animation = GetComponentInChildren<Animation>();
 
         _animation.clip = anim.idle;
-        _animation.Play();	
+        _animation.Play();
 	}
 	
 	// Update is called once per frame

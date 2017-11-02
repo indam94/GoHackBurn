@@ -12,7 +12,8 @@ public class BallCtrl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GetComponent<Rigidbody> ().AddForce(transform.forward * speed);
-	}
+        SoundMgr.instance.PlaySound(SoundMgr.instance.soundBallThrowing);
+    }
 	
 	// Update is called once per frame
 	void Update () {

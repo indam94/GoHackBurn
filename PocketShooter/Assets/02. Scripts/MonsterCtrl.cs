@@ -18,6 +18,8 @@ public class MonsterCtrl : MonoBehaviour {
 
 	private int hp = 100;
 
+    private GameUI GameUI;
+
 	private bool isDie = false;
 	// Use this for initialization
 	void Start () {
@@ -101,6 +103,7 @@ public class MonsterCtrl : MonoBehaviour {
 
 			//hp차감
 			hp -= coll.gameObject.GetComponent<BallCtrl>().damage;
+            GameUI.DispScore(coll.gameObject.GetComponent<BallCtrl>().damage);
 			if (hp <= 0) {
 				MonsterDie ();
 			}
@@ -124,6 +127,7 @@ public class MonsterCtrl : MonoBehaviour {
 
 		foreach (Collider coll in gameObject.GetComponentsInChildren<SphereCollider>()) {
 			coll.enabled = false;
+
 		}
 	}
 
