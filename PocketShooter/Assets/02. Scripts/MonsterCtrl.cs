@@ -103,11 +103,11 @@ public class MonsterCtrl : MonoBehaviour {
 
 			//hp차감
 			hp -= coll.gameObject.GetComponent<BallCtrl>().damage;
-            GameUI.DispScore(coll.gameObject.GetComponent<BallCtrl>().damage);
+            //GameUI.DispScore(coll.gameObject.GetComponent<BallCtrl>().damage);
 			if (hp <= 0) {
 				MonsterDie ();
 			}
-
+			print ("!!!");
 			//삭제
 			Destroy(coll.gameObject);
 			//
