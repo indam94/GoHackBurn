@@ -18,7 +18,7 @@ public class MonsterCtrl : MonoBehaviour {
 
 	private int hp = 100;
 
-    private GameUI GameUI;
+    private GameUI gameUI;
 
 	private bool isDie = false;
 	// Use this for initialization
@@ -31,7 +31,9 @@ public class MonsterCtrl : MonoBehaviour {
 
 		nvAgent.destination = playerTr.position;
 
-		StartCoroutine (this.CheckMonsterState ());
+        gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
+
+        StartCoroutine (this.CheckMonsterState ());
 		StartCoroutine (this.MonsterAction ());
 	}
 
@@ -103,8 +105,11 @@ public class MonsterCtrl : MonoBehaviour {
 
 			//hp차감
 			hp -= coll.gameObject.GetComponent<BallCtrl>().damage;
-            //GameUI.DispScore(coll.gameObject.GetComponent<BallCtrl>().damage);
-			if (hp <= 0) {
+
+            //몬스터 피격시 점수
+            gameUI.DispScore (coll.gameObject.GetComponent<BallCtrl>().damage);
+            
+            if (hp <= 0) {
 				MonsterDie ();
 			}
 			print ("!!!");
