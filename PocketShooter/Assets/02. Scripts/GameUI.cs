@@ -23,8 +23,8 @@ public class GameUI : MonoBehaviour {
         txtScore.text = "SCORE <color=#ff0000>" + totScore.ToString() + "</color>";
     }
 
-    public void ControlHP(int control)
+    public void DispHP(int hp)
     {
-        sliderHP.value += control;
+        sliderHP.value = hp;
     }
 }

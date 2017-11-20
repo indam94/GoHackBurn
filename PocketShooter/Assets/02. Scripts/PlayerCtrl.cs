@@ -88,7 +88,7 @@ public class PlayerCtrl : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.tag == "PUNCH") {
 			hp -= 10;
-            gameUI.ControlHP(-10);
+            gameUI.DispHP(hp);
             //imgHpbar.fillAmount = (float)hp / (float)initHp;
 
             Debug.Log ("Player HP = " + hp.ToString ());
