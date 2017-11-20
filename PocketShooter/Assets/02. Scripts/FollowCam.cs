@@ -16,7 +16,7 @@ public class FollowCam : MonoBehaviour {
 	void Start () {
         tr = GetComponent<Transform>();
 
-        SoundMgr.instance.PlayLoopSound(SoundMgr.instance.bgmOST2); //BGM
+        SoundMgr.instance.PlayLoopSound(SoundMgr.instance.bgmOST3); //BGM
 	}
 	
 	// Update is called once per frame
