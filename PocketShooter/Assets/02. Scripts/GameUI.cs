@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour {
 
     public Text txtScore;
+    public Slider sliderHP;
+
     //누적 점수
     private int totScore = 0;
+
     
     void Start()
     {
@@ -18,5 +21,10 @@ public class GameUI : MonoBehaviour {
     {
         totScore += score;
         txtScore.text = "SCORE <color=#ff0000>" + totScore.ToString() + "</color>";
+    }
+
+    public void ControlHP(int control)
+    {
+        sliderHP.value += control;
     }
 }

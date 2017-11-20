@@ -17,6 +17,7 @@ public class PlayerCtrl : MonoBehaviour {
     private float v = 0.0f;
 
     private Transform tr;
+    private GameUI gameUI;
 
     public float moveSpeed = 10.0f;
     public float rotSpeed = 100.0f;
@@ -24,7 +25,7 @@ public class PlayerCtrl : MonoBehaviour {
     public Anim anim; //인스펙터뷰에 표시한 애니메이션 클래스 변수
     public Animation _animation;
 
-	public int hp = 100;
+    public int hp = 100;
 
 	public delegate void PlayerDieHandler ();
 	public static event PlayerDieHandler OnPlayerDie;
@@ -37,7 +38,9 @@ public class PlayerCtrl : MonoBehaviour {
 
         _animation.clip = anim.idle;
         _animation.Play();
-	}
+
+        gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -85,10 +88,10 @@ public class PlayerCtrl : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.tag == "PUNCH") {
 			hp -= 10;
+            gameUI.ControlHP(-10);
+            //imgHpbar.fillAmount = (float)hp / (float)initHp;
 
-			//imgHpbar.fillAmount = (float)hp / (float)initHp;
-
-			Debug.Log ("Player HP = " + hp.ToString ());
+            Debug.Log ("Player HP = " + hp.ToString ());
 
 			if (hp <= 0) {
 				PlayerDie ();

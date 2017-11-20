@@ -14,13 +14,13 @@ public class MonsterCtrl : MonoBehaviour
     private Transform playerTr;
     private UnityEngine.AI.NavMeshAgent nvAgent;
     private Animator animator;
+    private GameUI gameUI;
 
     public float traceDist = 10.0f;
     public float attackDist = 2.0f;
 
     private int hp = 100;
 
-    private GameUI gameUI;
 
     private bool isDie = false;
     // Use this for initialization
@@ -113,7 +113,6 @@ public class MonsterCtrl : MonoBehaviour
 
             //hp차감
             hp -= coll.gameObject.GetComponent<BallCtrl>().damage;
-            //GameUI.DispScore(coll.gameObject.GetComponent<BallCtrl>().damage);
             if (hp <= 0)
             {
                 MonsterDie();
