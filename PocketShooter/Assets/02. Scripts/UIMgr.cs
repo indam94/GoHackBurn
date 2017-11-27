@@ -7,7 +7,7 @@ public class UIMgr : MonoBehaviour {
 
 	public void OnClickStartBtn()
     {
-        SceneManager.LoadScene("scPlay");   
+        SceneManager.LoadScene("gfPlay1");   
 
     }
 }

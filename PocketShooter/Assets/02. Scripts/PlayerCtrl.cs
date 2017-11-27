@@ -30,6 +30,8 @@ public class PlayerCtrl : MonoBehaviour {
 	public delegate void PlayerDieHandler ();
 	public static event PlayerDieHandler OnPlayerDie;
 
+	public GameObject txtFail;
+
     // Use this for initialization
     void Start () {
         tr = GetComponent<Transform>();
@@ -40,6 +42,8 @@ public class PlayerCtrl : MonoBehaviour {
         _animation.Play();
 
         gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
+
+		txtFail.SetActive (false);
     }
 	
 	// Update is called once per frame
@@ -110,7 +114,7 @@ public class PlayerCtrl : MonoBehaviour {
 		//	monster.SendMessage ("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
 		//}
 		OnPlayerDie();
-
+		txtFail.SetActive (true);
 		//gameMgr.isGameOver = true;
 		//GameMgr.instance.isGameOver = true;
 	}

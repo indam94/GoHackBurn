@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MonsterCtrl : MonoBehaviour
 {
 
@@ -143,7 +142,7 @@ public class MonsterCtrl : MonoBehaviour
         {
             coll.enabled = false;
         }
-        gameUI.DispScore(50);
+        gameUI.DispScore(1);
 
         StartCoroutine(this.PushObjectPool());
     }
