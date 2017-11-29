@@ -15,27 +15,24 @@ public class MonsterCtrl : MonoBehaviour
     private Animator animator;
     private GameUI gameUI;
 
+    //추적을 시작할 거리
     public float traceDist = 10.0f;
+	  //공격을 시작할 거리
     public float attackDist = 2.0f;
-
+	  //몬스터의 체력
     private int hp = 100;
-
-
+    //초기 생존 상태
     private bool isDie = false;
     // Use this for initialization
     void Awake()
     {
+		    //
         monsterTr = this.gameObject.GetComponent<Transform>();
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        //nvAgent = this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
         nvAgent = this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         animator = this.gameObject.GetComponent<Animator>();
         gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
-        //nvAgent.destination = playerTr.position;
-
-        //StartCoroutine (this.CheckMonsterState ());
-        //StartCoroutine (this.MonsterAction ());
     }
 
     void OnEnable()
@@ -54,6 +51,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         while (!isDie)
         {
+			//0.2초 간격으로 호출 = Delay()와 비
             yield return new WaitForSeconds(0.2f);
 
             float dist = Vector3.Distance(playerTr.position, monsterTr.position);
@@ -106,10 +104,6 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (coll.gameObject.tag == "Ball")
         {
-            //혈흔 효과
-            //CreateBloodEffect(coll.transform.position);
-
-
             //hp차감
             hp -= coll.gameObject.GetComponent<BallCtrl>().damage;
             if (hp <= 0)
@@ -172,11 +166,5 @@ public class MonsterCtrl : MonoBehaviour
         StopAllCoroutines();
         nvAgent.Stop();
         animator.SetTrigger("IsPlayerDie");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

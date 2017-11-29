@@ -106,16 +106,7 @@ public class PlayerCtrl : MonoBehaviour {
 	void PlayerDie()
 	{
 		Debug.Log ("Player Die!!");
-
-		//Tag를 찾음
-		//GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
-		//
-		//foreach (GameObject monster in monsters) {
-		//	monster.SendMessage ("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
-		//}
 		OnPlayerDie();
 		txtFail.SetActive (true);
-		//gameMgr.isGameOver = true;
-		//GameMgr.instance.isGameOver = true;
 	}
 }
