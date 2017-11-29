@@ -23,7 +23,7 @@ public class MonsterCtrl : MonoBehaviour
     private int hp = 100;
     //초기 생존 상태
     private bool isDie = false;
-    // Use this for initialization
+  
     void Awake()
     {
 		    //

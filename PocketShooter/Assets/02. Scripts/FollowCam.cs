@@ -12,14 +12,14 @@ public class FollowCam : MonoBehaviour {
     private Transform tr;
 
 
-	// Use this for initialization
+
 	void Start () {
         tr = GetComponent<Transform>();
 
         SoundMgr.instance.PlayLoopSound(SoundMgr.instance.bgmOST3); //BGM
 	}
+
 	
-	// Update is called once per frame
     //추적할 타깃의 이동이 종료된 후 카메라가 추적하기 위해 LateUpdate()를 사용
 	void LateUpdate () {
         //부드러운 이동을 위해 두 벡터를 선형보간시키는 함수 사용

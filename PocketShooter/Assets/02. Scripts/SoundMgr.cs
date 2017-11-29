@@ -18,11 +18,13 @@ public class SoundMgr : MonoBehaviour
         {
             SoundMgr.instance = this;
         }
-    }
-    void Start()
-    {
+
         myAudio = this.gameObject.GetComponent<AudioSource>();
     }
+    /*void Start()
+    {
+        myAudio = this.gameObject.GetComponent<AudioSource>();
+    }*/
 
     public void PlaySound(AudioClip whichSound)
     {

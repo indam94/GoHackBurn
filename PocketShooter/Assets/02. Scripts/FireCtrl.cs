@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(AudioSource))]
+
 public class FireCtrl : MonoBehaviour {
 
 	//총알 프리맵
@@ -13,7 +13,7 @@ public class FireCtrl : MonoBehaviour {
 	void Start () {
 	}
 
-	// Update is called once per frame
+	
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
 			Fire ();

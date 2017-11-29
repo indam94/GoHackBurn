@@ -32,7 +32,7 @@ public class PlayerCtrl : MonoBehaviour {
 
 	public GameObject txtFail;
 
-    // Use this for initialization
+
     void Start () {
         tr = GetComponent<Transform>();
 
@@ -45,12 +45,12 @@ public class PlayerCtrl : MonoBehaviour {
 
 		txtFail.SetActive (false);
     }
-	
-	// Update is called once per frame
+
+
 	void Update () {
         h = Input.GetAxis ("Horizontal"); // InputManager의 "Horizontal"에 설정된 값을 입력했을때 -1 ~ +1 까지의 값을 반환
         v = Input.GetAxis ("Vertical"); // InputManager의 "Vertical"에 설정된 값을 입력했을때 -1 ~ +1 까지의 값을 반환
-        
+
         // 디버깅 정보를 텍스트 형태로 console 뷰에 표시
         //Debug.Log("H=" + h.ToString());
         //Debug.Log("V=" + v.ToString());
@@ -93,7 +93,7 @@ public class PlayerCtrl : MonoBehaviour {
 		if (coll.gameObject.tag == "PUNCH") {
 			hp -= 10;
             gameUI.DispHP(hp);
-            //imgHpbar.fillAmount = (float)hp / (float)initHp;
+            
 
             Debug.Log ("Player HP = " + hp.ToString ());
 
