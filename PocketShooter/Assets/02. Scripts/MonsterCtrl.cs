@@ -26,7 +26,6 @@ public class MonsterCtrl : MonoBehaviour
   
     void Awake()
     {
-		    //
         monsterTr = this.gameObject.GetComponent<Transform>();
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
         nvAgent = this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();

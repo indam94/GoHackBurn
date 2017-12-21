@@ -24,7 +24,7 @@ public class GameUI : MonoBehaviour {
     {
         totScore += score;
         txtScore.text = "SCORE <color=#ff0000>" + totScore.ToString() + "/10 </color>";
-		if (totScore > 10) {
+		if (totScore >= 10) {
 			txtSuccess.SetActive (true);
 		}
     }
